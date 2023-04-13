@@ -31,6 +31,10 @@ M.setup = function()
             end
         },
         mapping = lsp.defaults.cmp_mappings({
+            ['<CR>'] = cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+            },
             ["<C-j>"] = cmp.mapping(function(fallback)
                 if luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
@@ -69,13 +73,15 @@ M.setup = function()
             }
         },
         sources = {
-            { name = 'luasnip',
+            {
+                name = 'luasnip',
                 options = { use_show_condition = false }
             },
             { name = 'nvim_lsp' },
             { name = 'nvim_lsp_signature_help' },
             { name = 'nvim_lua' },
-            { name = 'buffer',
+            {
+                name = 'buffer',
                 options = {
                     get_bufnrs = function()
                         return vim.api.nvim_list_bufs()
