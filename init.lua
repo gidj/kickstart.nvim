@@ -494,7 +494,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 --
 -- nvim-cmp setup
 -- require('config/lsp').setup()
-require('config/cmp').setup()
+-- require('config/cmp').setup()
 
 -- local cmp = require 'cmp'
 -- local luasnip = require 'luasnip'
