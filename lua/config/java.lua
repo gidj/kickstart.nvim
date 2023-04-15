@@ -40,7 +40,7 @@ local config = {
         debounce_text_changes = 80,
     },
     on_attach = lsp_config.on_attach_java, -- We pass our on_attach keybindings to the configuration map
-    root_dir = root_dir, -- Set the root directory to our found root_marker
+    root_dir = root_dir,                   -- Set the root directory to our found root_marker
     -- Here you can configure eclipse.jdt.ls specific settings
     -- These are defined by the eclipse.jdt.ls project and will be passed to eclipse when starting.
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -79,8 +79,8 @@ local config = {
             -- Specify any options for organizing imports
             sources = {
                 organizeImports = {
-                    starThreshold = 9999;
-                    staticStarThreshold = 9999;
+                    starThreshold = 9999,
+                    staticStarThreshold = 9999,
                 },
             },
             -- How code generation should act
@@ -149,6 +149,7 @@ local config = {
     },
     init_options = {
         bundles = bundles,
+        workspaceFolders = require('custom.utils').java_workspaces(),
     },
 }
 
