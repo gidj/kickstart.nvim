@@ -149,7 +149,7 @@ local config = {
     },
     init_options = {
         bundles = bundles,
-        workspaceFolders = require('custom.utils').java_workspaces(),
+        workspaceFolders = require('util.lsp').java_workspaces(),
     },
 }
 

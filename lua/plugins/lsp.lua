@@ -41,13 +41,9 @@ return {
   -- LSP Configuration & Plugins
   'VonHeikemen/lsp-zero.nvim',
   dependencies = {
-    -- Automatically install LSPs to stdpath for neovim
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-
-    -- Useful status updates for LSP
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
 
     -- Additional lua configuration, makes nvim stuff amazing!
@@ -88,6 +84,8 @@ return {
     })
     lsp_zero.on_attach(on_attach)
     lsp_zero.setup()
+    -- Setup neovim lua configuration
+    require('neodev').setup()
   end,
 }
 -- vim: ts=2 sts=2 sw=2 et
