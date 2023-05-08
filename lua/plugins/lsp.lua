@@ -38,54 +38,71 @@ local on_attach = function(client, bufnr)
 end
 
 return {
-  -- LSP Configuration & Plugins
-  'VonHeikemen/lsp-zero.nvim',
-  dependencies = {
-    'neovim/nvim-lspconfig',
-    {'williamboman/mason.nvim', build = ":MasonUpdate"},
-    'williamboman/mason-lspconfig.nvim',
-    { 'j-hui/fidget.nvim', opts = {} },
-
-    -- Additional lua configuration, makes nvim stuff amazing!
-    'folke/neodev.nvim',
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local null_ls = require("null-ls")
+      local sources = {
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.prettier.with({ filtetypes = { "json" } }),
+      }
+      require "null-ls".setup({
+        sources = sources,
+        -- debug = true,
+      })
+    end
   },
-  config = function()
-    local lsp_zero = require('lsp-zero')
+  -- LSP Configuration & Plugins
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      { 'williamboman/mason.nvim', build = ":MasonUpdate" },
+      'williamboman/mason-lspconfig.nvim',
+      { 'j-hui/fidget.nvim',       opts = {} },
 
-    lsp_zero.ensure_installed({
-      'gopls',
-      'jdtls',
-      'pyright',
-      'rust_analyzer',
-      'lua_ls',
-      'tsserver',
-    })
+      -- Additional lua configuration, makes nvim stuff amazing!
+      'folke/neodev.nvim',
+    },
+    config = function()
+      local lsp_zero = require('lsp-zero')
 
-    vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+      lsp_zero.ensure_installed({
+        'gopls',
+        'jdtls',
+        'pyright',
+        'rust_analyzer',
+        'lua_ls',
+        'tsserver',
+      })
 
-    lsp_zero.preset('lsp-only')
-    lsp_zero.skip_server_setup({ "jdtls" })
-    lsp_zero.nvim_workspace({
-      library = vim.api.nvim_get_runtime_file('', true)
-    })
-    --[[ local lua_opts = lsp_zero.defaults.nvim_workspace()
+      vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
+      lsp_zero.preset('lsp-only')
+      lsp_zero.skip_server_setup({ "jdtls" })
+      lsp_zero.nvim_workspace({
+        library = vim.api.nvim_get_runtime_file('', true)
+      })
+      --[[ local lua_opts = lsp_zero.defaults.nvim_workspace()
     lua_opts.settings.Lua.completion = { callSnippet = 'Replace' }
     lua_opts.settings.Lua.library = vim.api.nvim_get_runtime_file('', true)
     lsp_zero.configure('sumneko_lua', lua_opts) ]]
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-      properties = { "documentation", "detail", "additionalTextEdits" }
-    }
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = { "documentation", "detail", "additionalTextEdits" }
+      }
 
-    lsp_zero.set_preferences({
-      capabilities = capabilities,
-      set_lsp_keymaps = false,
-    })
-    lsp_zero.on_attach(on_attach)
-    lsp_zero.setup()
-    -- Setup neovim lua configuration
-    require('neodev').setup()
-  end,
+      lsp_zero.set_preferences({
+        capabilities = capabilities,
+        set_lsp_keymaps = false,
+      })
+      lsp_zero.on_attach(on_attach)
+      lsp_zero.setup()
+      -- Setup neovim lua configuration
+      require('neodev').setup()
+    end
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
