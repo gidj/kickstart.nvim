@@ -60,7 +60,11 @@ return {
       'neovim/nvim-lspconfig',
       { 'williamboman/mason.nvim', build = ":MasonUpdate" },
       'williamboman/mason-lspconfig.nvim',
-      { 'j-hui/fidget.nvim',       opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        opts = {},
+        branch = "legacy"
+      },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',

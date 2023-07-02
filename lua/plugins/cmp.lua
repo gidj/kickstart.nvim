@@ -18,8 +18,8 @@ return {
 
 		-- Snippets
 		'L3MON4D3/LuaSnip',
-		'rafamadriz/friendly-snippets',
 		'saadparwaiz1/cmp_luasnip',
+		'rafamadriz/friendly-snippets',
 	},
 	config = function()
 		local cmp = require('cmp')
@@ -29,6 +29,7 @@ return {
 
 		-- If you want insert `(` after select function or method item
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    require('luasnip.loaders.from_vscode').lazy_load()
 
 		cmp.event:on(
 			'confirm_done',

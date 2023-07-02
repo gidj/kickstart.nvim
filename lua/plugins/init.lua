@@ -1,24 +1,43 @@
+get_amazon_type_url = function(url_data)
+  local url = "https://"
+      .. url_data.host:gsub("git", "code")
+      .. "/"
+      .. url_data.repo:gsub("pkg", "packages")
+      .. "/blobs/"
+      .. url_data.rev
+      .. "/--/"
+      .. url_data.file
+  if url_data.lstart then
+    url = url .. "#L" .. url_data.lstart
+    if url_data.lend then
+      url = url .. "-L" .. url_data.lend
+    end
+  end
+  return url
+end
+
 return {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   'justinmk/vim-dirvish',
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim"
-    },
-    cmd = "Neotree",
-    keys = {
-      { "<C-b>", "<cmd>Neotree toggle<cr>", mode = "n", desc = "Toggle Neotree" },
-    },
-    config = function()
-      require("neo-tree").setup({
-        filesystem = {
-          follow_current_file = true,
-        }
-      })
-    end
-  },
+  'ipkiss42/xwiki.vim',
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim"
+  --   },
+  --   cmd = "Neotree",
+  --   keys = {
+  --     { "<C-b>", "<cmd>Neotree toggle<cr>", mode = "n", desc = "Toggle Neotree" },
+  --   },
+  --   config = function()
+  --     require("neo-tree").setup({
+  --       filesystem = {
+  --         follow_current_file = true,
+  --       }
+  --     })
+  --   end
+  -- },
   { 'mfussenegger/nvim-jdtls' },
   {
     "windwp/nvim-autopairs",
@@ -181,6 +200,17 @@ return {
     --   })
     -- end
   },
+  {
+    'ruifm/gitlinker.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('gitlinker').setup {
+        callbacks = {
+          ["git.amazon.com"] = get_amazon_type_url
+        }
+      }
+    end
+  }
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.

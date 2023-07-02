@@ -47,6 +47,11 @@ local config = {
     -- for a list of options
     settings = {
         java = {
+            -- inlayhints = {
+            --     parameterNames = {
+            --         enabled = true
+            --     }
+            -- },
             format = {
                 settings = {
                     -- Use Google Java style guidelines for formatting
