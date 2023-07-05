@@ -214,12 +214,19 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
+      "nvim-neotest/neotest-python",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim"
-    }
-  }
-
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-python")
+        }
+      })
+    end
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
