@@ -61,7 +61,13 @@ M.on_attach_java = function(client, bufnr)
     vim.keymap.set('v', "<space>em", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
         { noremap = true, silent = true, buffer = bufnr, desc = "Extract method" })
 
-    jdtls.setup_dap({ hotcodereplace = 'auto' })
+    jdtls.setup_dap({
+        config_overrides = {
+            vmArgs = '-ea -javaagent:/Volumes/brazil-pkg-cache/packages/Maven-org-aspectj_aspectjweaver/Maven-org-aspectj_aspectjweaver-1.9.x.3275.0/AL2_x86_64/DEV.STD.PTHREAD/build/lib/aspectjweaver-1.9.6.jar',
+        },
+        hotcodereplace = 'auto',
+    })
+    -- jdtls.dap.setup_dap_main_class_configs()
     jdtls_setup.add_commands()
     require("dapui").setup()
 end

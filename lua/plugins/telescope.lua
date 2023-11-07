@@ -54,11 +54,11 @@ return {
             override_file_sorter = true,
             case_mode = "smart_case",
           },
-          -- ['ui-select'] = {
-          --   require('telescope.themes').get_dropdown {
-          --
-          --   }
-          -- },
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown {
+
+            }
+          },
           undo = {
             side_by_side = true,
             layout_strategy = "vertical",
@@ -66,11 +66,16 @@ return {
               preview_height = 0.8,
             }
           }
+        },
+        pickers = {
+          lsp_references = {
+            show_line = false
+          }
         }
       }
 
       -- telescope.load_extension('file_browser')
-      -- telescope.load_extension('ui-select')
+      telescope.load_extension('ui-select')
       telescope.load_extension('undo')
       pcall(require('telescope').load_extension, 'fzf')
     end

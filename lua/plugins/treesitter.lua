@@ -17,6 +17,8 @@ return {
         "javascript",
         "json",
         "lua",
+        "markdown",
+        "markdown_inline",
         "python",
         "ruby",
         "rust",
@@ -27,7 +29,11 @@ return {
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
       auto_install = false,
 
-      highlight = { enable = true, disable = {} },
+      highlight = {
+        enable = true,
+        disable = {},
+        additional_vim_regex_highlighting = { "markdown" },
+      },
       indent = { enable = true, disable = { 'python' } },
       incremental_selection = {
         enable = true,

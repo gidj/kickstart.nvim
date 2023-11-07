@@ -30,10 +30,13 @@ end
 local lsp_config = require('config/lsp')
 
 local bundles = {
-    vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
+    -- vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
+    vim.fn.glob(
+        home .. "/projects/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1)
 }
 -- This is the new part
-vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1), "\n"))
+-- vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/projects/vscode-java-test/server/*.jar", 1), "\n"))
 
 local config = {
     flags = {
@@ -107,15 +110,21 @@ local config = {
                 runtimes = {
                     {
                         name = "JavaSE-1.8",
-                        path = home .. "/.asdf/installs/java/corretto-8.352.08.1"
+                        path = home .. "/.local/share/rtx/installs/java/corretto-8.392.08.1",
+                        default = true
                     },
+                    -- {
+                    --     name = "JavaSE-1.8",
+                    --     path = "/Volumes/workplace/AssetPersonalizationService/env/JDK8-1.0/runtime/jdk1.8",
+                    --     default = true
+                    -- },
                     {
                         name = "JavaSE-17",
-                        path = home .. "/.asdf/installs/java/openjdk-17.0.2",
+                        path = home .. "/.local/share/rtx/installs/java/openjdk-17",
                     },
                     {
                         name = "JavaSE-19",
-                        path = home .. "/.asdf/installs/java/openjdk-19.0.2",
+                        path = home .. "/.local/share/rtx/installs/java/openjdk-19",
                     },
                 }
             }
@@ -127,7 +136,7 @@ local config = {
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     -- for the full list of options
     cmd = {
-        home .. "/.asdf/installs/java/openjdk-19.0.2/bin/java",
+        home .. "/.local/share/rtx/installs/java/openjdk-19/bin/java",
         -- "java",
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
@@ -138,6 +147,8 @@ local config = {
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        -- '-ea',
+        -- '-javaagent:/Volumes/brazil-pkg-cache/packages/Maven-org-aspectj_aspectjweaver/Maven-org-aspectj_aspectjweaver-1.9.x.3275.0/AL2_x86_64/DEV.STD.PTHREAD/build/lib/aspectjweaver-1.9.6.jar',
         -- If you use lombok, download the lombok jar and place it in ~/.local/share/eclipse
         '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
 
