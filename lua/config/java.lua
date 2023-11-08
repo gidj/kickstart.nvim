@@ -108,16 +108,16 @@ local config = {
             -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
             configuration = {
                 runtimes = {
-                    {
-                        name = "JavaSE-1.8",
-                        path = home .. "/.local/share/rtx/installs/java/corretto-8.392.08.1",
-                        default = true
-                    },
                     -- {
                     --     name = "JavaSE-1.8",
-                    --     path = "/Volumes/workplace/AssetPersonalizationService/env/JDK8-1.0/runtime/jdk1.8",
+                    --     path = home .. "/.local/share/rtx/installs/java/corretto-8.392.08.1",
                     --     default = true
                     -- },
+                    {
+                        name = "JavaSE-1.8",
+                        path = "/Volumes/workplace/AssetPersonalizationService/env/JDK8-1.0/runtime/jdk1.8",
+                        default = true
+                    },
                     {
                         name = "JavaSE-17",
                         path = home .. "/.local/share/rtx/installs/java/openjdk-17",
@@ -147,8 +147,6 @@ local config = {
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-        -- '-ea',
-        -- '-javaagent:/Volumes/brazil-pkg-cache/packages/Maven-org-aspectj_aspectjweaver/Maven-org-aspectj_aspectjweaver-1.9.x.3275.0/AL2_x86_64/DEV.STD.PTHREAD/build/lib/aspectjweaver-1.9.6.jar',
         -- If you use lombok, download the lombok jar and place it in ~/.local/share/eclipse
         '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
 

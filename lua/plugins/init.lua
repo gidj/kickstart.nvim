@@ -20,6 +20,24 @@ return {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   'justinmk/vim-dirvish',
+  {
+    url = "gideonva@git.amazon.com:pkg/NinjaHooks",
+    branch = "mainline",
+    lazy = false,
+    config = function(plugin)
+      vim.opt.rtp:prepend(plugin.dir .. "/configuration/vim/amazon/brazil-config")
+      -- Make my own filetype thing to override neovim applying ".conf" file type.
+      -- You may or may not need this depending on your setup.
+      vim.filetype.add({
+        filename = {
+          ['Config'] = function()
+            vim.b.brazil_package_Config = 1
+            return 'brazilconfig'
+          end,
+        },
+      })
+    end,
+  },
   'ipkiss42/xwiki.vim',
   -- {
   --   "nvim-neo-tree/neo-tree.nvim",
@@ -39,14 +57,14 @@ return {
   --   end
   -- },
   { 'mfussenegger/nvim-jdtls' },
-  { 'mfussenegger/nvim-dap'},
-  { 'rcarriga/nvim-dap-ui'},
+  { 'mfussenegger/nvim-dap' },
+  { 'rcarriga/nvim-dap-ui' },
   {
     "windwp/nvim-autopairs",
     opts = {}
   },
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',   opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',

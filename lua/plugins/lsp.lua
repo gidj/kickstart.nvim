@@ -3,39 +3,41 @@ local function nnoremap(rhs, lhs, bufopts, desc)
   vim.keymap.set("n", rhs, lhs, bufopts)
 end
 
-local on_attach = function(client, bufnr)
-  local telescope = require('telescope.builtin')
-  -- Regular Neovim LSP client keymappings
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  nnoremap('gD', vim.lsp.buf.type_definition, bufopts, "Go to type definition")
-  nnoremap('gd', telescope.lsp_definitions, bufopts, "Go to definition")
-  nnoremap('gi', telescope.lsp_implementations, bufopts, "Go to implementation")
-  nnoremap('K', vim.lsp.buf.hover, bufopts, "Hover text")
-  nnoremap('<C-k>', vim.lsp.buf.signature_help, bufopts, "Show signature")
-  nnoremap('<leader>rn', vim.lsp.buf.rename, bufopts)
-  nnoremap("<leader>gr", telescope.lsp_references, bufopts, "Get references")
-
-  nnoremap('<leader>ca', vim.lsp.buf.code_action, bufopts, "Code Actions")
-  vim.keymap.set('v', "<leader>ca", "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
-    { noremap = true, silent = true, buffer = bufnr, desc = "Code actions" })
-
-  nnoremap('<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts, "Format file")
-  nnoremap('<leader>qf', telescope.quickfix, bufopts, "Open quickfix")
-
-  nnoremap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts, "List workspace folders")
-
-  nnoremap('<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts, "Add workspace folder")
-  nnoremap('<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts, "Remove workspace folder")
-
-  -- Show diagnostics in a floating window
-  nnoremap('gl', vim.diagnostic.open_float, bufopts)
-  -- Move to the previous diagnostic
-  nnoremap('[d', vim.diagnostic.goto_prev, bufopts)
-  -- Move to the next diagnostic
-  nnoremap(']d', vim.diagnostic.goto_next, bufopts)
-end
+-- local on_attach = function(client, bufnr)
+--   local telescope = require('telescope.builtin')
+--   -- Regular Neovim LSP client keymappings
+--   local bufopts = { noremap = true, silent = true, buffer = bufnr }
+--   nnoremap('gD', vim.lsp.buf.type_definition, bufopts, "Go to type definition")
+--   nnoremap('gd', telescope.lsp_definitions, bufopts, "Go to definition")
+--   nnoremap('gi', telescope.lsp_implementations, bufopts, "Go to implementation")
+--   nnoremap('K', vim.lsp.buf.hover, bufopts, "Hover text")
+--   nnoremap('<C-k>', vim.lsp.buf.signature_help, bufopts, "Show signature")
+--   nnoremap('<leader>rn', vim.lsp.buf.rename, bufopts)
+--   nnoremap("<leader>gr", telescope.lsp_references, bufopts, "Get references")
+--
+--   nnoremap('<leader>ca', vim.lsp.buf.code_action, bufopts, "Code Actions")
+--   vim.keymap.set('v', "<leader>ca", "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
+--     { noremap = true, silent = true, buffer = bufnr, desc = "Code actions" })
+--
+--   nnoremap('<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts, "Format file")
+--   nnoremap('<leader>qf', telescope.quickfix, bufopts, "Open quickfix")
+--
+--   nnoremap('<leader>wl', function()
+--     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--   end, bufopts, "List workspace folders")
+--
+--   nnoremap('<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts, "Add workspace folder")
+--   nnoremap('<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts, "Remove workspace folder")
+--
+--   -- Show diagnostics in a floating window
+--   nnoremap('gl', vim.diagnostic.open_float, bufopts)
+--   -- Move to the previous diagnostic
+--   nnoremap('[d', vim.diagnostic.goto_prev, bufopts)
+--   -- Move to the next diagnostic
+--   nnoremap(']d', vim.diagnostic.goto_next, bufopts)
+-- end
+--
+local lsp_config = require("config/lsp")
 
 return {
   {
@@ -83,6 +85,25 @@ return {
 
       vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
+      local lspconfig = require 'lspconfig'
+      local configs = require 'lspconfig.configs'
+
+      -- Check if the config is already defined (useful when reloading this file)
+      if not configs.barium then
+        configs.barium = {
+          default_config = {
+            cmd = { 'barium' },
+            filetypes = { 'brazilconfig' },
+            root_dir = function(fname)
+              return lspconfig.util.find_git_ancestor(fname)
+            end,
+            settings = {},
+          },
+        }
+      end
+
+      lspconfig.barium.setup {}
+
       lsp_zero.preset('lsp-only')
       lsp_zero.skip_server_setup({ "jdtls" })
       lsp_zero.nvim_workspace({
@@ -102,7 +123,7 @@ return {
         capabilities = capabilities,
         set_lsp_keymaps = false,
       })
-      lsp_zero.on_attach(on_attach)
+      lsp_zero.on_attach(lsp_config.on_attach)
       lsp_zero.setup()
       -- Setup neovim lua configuration
       require('neodev').setup()
