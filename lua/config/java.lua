@@ -108,16 +108,16 @@ local config = {
             -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
             configuration = {
                 runtimes = {
-                    -- {
-                    --     name = "JavaSE-1.8",
-                    --     path = home .. "/.local/share/rtx/installs/java/corretto-8.392.08.1",
-                    --     default = true
-                    -- },
                     {
                         name = "JavaSE-1.8",
-                        path = "/Volumes/workplace/AssetPersonalizationService/env/JDK8-1.0/runtime/jdk1.8",
+                        path = home .. "/.local/share/rtx/installs/java/corretto-8.392.08.1",
                         default = true
                     },
+                    -- {
+                    --     name = "JavaSE-1.8",
+                    --     path = "/Volumes/workplace/AssetPersonalizationService/env/JDK8-1.0/runtime/jdk1.8",
+                    --     default = true
+                    -- },
                     {
                         name = "JavaSE-17",
                         path = home .. "/.local/share/rtx/installs/java/openjdk-17",

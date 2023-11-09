@@ -61,6 +61,11 @@ M.on_attach_java = function(client, bufnr)
     vim.keymap.set('v', "<space>em", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
         { noremap = true, silent = true, buffer = bufnr, desc = "Extract method" })
 
+    -- " If using nvim-dap
+    -- " This requires java-debug and vscode-java-test bundles, see install steps in this README further below.
+    nnoremap("<leader>df", jdtls.test_class, bufopts, "Test class")
+    nnoremap("<leader>dn", jdtls.test_nearest_method, bufopts, "Test nearest method")
+
     jdtls.setup_dap({
         config_overrides = {
             vmArgs = '-ea -javaagent:/Volumes/brazil-pkg-cache/packages/Maven-org-aspectj_aspectjweaver/Maven-org-aspectj_aspectjweaver-1.9.x.3275.0/AL2_x86_64/DEV.STD.PTHREAD/build/lib/aspectjweaver-1.9.6.jar',
