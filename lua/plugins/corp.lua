@@ -1,11 +1,12 @@
 local home = os.getenv('HOME')
 
-if home ~= 'Users/gideonva' then return {} end
+-- if home ~= '/Users/gideonva' then return {} end
 
 return {
+  {
     url = "gideonva@git.amazon.com:pkg/NinjaHooks",
     branch = "mainline",
-    lazy = true,
+    lazy = false,
     config = function(plugin)
       vim.opt.rtp:prepend(plugin.dir .. "/configuration/vim/amazon/brazil-config")
       -- Make my own filetype thing to override neovim applying ".conf" file type.
@@ -19,4 +20,5 @@ return {
         },
       })
     end,
+  }
 }

@@ -18,7 +18,17 @@ end
 
 return {
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  -- 'tpope/vim-sleuth',
+  {
+    'nmac427/guess-indent.nvim',
+    config = function()
+      require('guess-indent').setup {
+        filetype_exclude = {
+          'java',
+        }
+      }
+    end,
+  },
   'justinmk/vim-dirvish',
   'ipkiss42/xwiki.vim',
   {

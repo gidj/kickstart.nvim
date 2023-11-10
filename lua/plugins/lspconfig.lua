@@ -13,6 +13,7 @@ local lsp_config = require("config/lsp")
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
+    branch = "v3.x",
     dependencies = {
       'neovim/nvim-lspconfig',
       { 'williamboman/mason.nvim', build = ":MasonUpdate" },
@@ -28,18 +29,14 @@ return {
     },
     config = function()
       local lsp_zero = require('lsp-zero')
-
       local mason = require('mason')
-      mason.setup({})
       local mason_lspconfig = require('mason-lspconfig')
-      mason_lspconfig.setup({
-        ensure_installed = servers
-      })
-
-      vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
       local lspconfig = require 'lspconfig'
       local configs = require 'lspconfig.configs'
+
+
+      vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
       -- Check if the config is already defined (useful when reloading this file)
       if not configs.barium then
@@ -57,9 +54,18 @@ return {
 
       lspconfig.barium.setup {}
 
-      -- Lua
-      local lua_opts = lsp_zero.nvim_lua_ls()
-      lspconfig.lua_ls.setup(lua_opts)
+      mason.setup({})
+      mason_lspconfig.setup({
+        ensure_installed = servers,
+        handlers = {
+          lsp_zero.default_setup,
+          jdtls = lsp_zero.noop,
+          lua_ls = function ()
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            lspconfig.lua_ls.setup(lua_opts)
+          end,
+        }
+      })
 
       lsp_zero.preset('lsp-only')
 

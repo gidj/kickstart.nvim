@@ -38,7 +38,14 @@ local bundles = {
 -- vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1), "\n"))
 vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/projects/vscode-java-test/server/*.jar", 1), "\n"))
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+properties = { "documentation", "detail", "additionalTextEdits" }
+}
+
 local config = {
+    capabilities = capabilities,
     flags = {
         debounce_text_changes = 80,
     },
