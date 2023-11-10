@@ -14,7 +14,8 @@ local on_attach = function(client, bufnr)
     nnoremap('gd', telescope.lsp_definitions, bufopts, "Go to definition")
     nnoremap('gi', telescope.lsp_implementations, bufopts, "Go to implementation")
     nnoremap('K', vim.lsp.buf.hover, bufopts, "Hover text")
-    nnoremap('<C-k>', vim.lsp.buf.signature_help, bufopts, "Show signature")
+    -- TODO: Map this to something else
+    -- nnoremap('<C-k>', vim.lsp.buf.signature_help, bufopts, "Show signature")
     nnoremap('<leader>rn', vim.lsp.buf.rename, bufopts)
     nnoremap("<leader>gr", telescope.lsp_references, bufopts, "Get references")
 
@@ -76,42 +77,5 @@ M.on_attach_java = function(client, bufnr)
     jdtls_setup.add_commands()
     require("dapui").setup()
 end
-
--- M.setup = function()
---     local lsp_zero = require('lsp-zero')
---
---     lsp_zero.ensure_installed({
---         'gopls',
---         'jdtls',
---         'pyright',
---         'rust_analyzer',
---         'lua_ls',
---         'tsserver',
---     })
---
---     vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
---
---     lsp_zero.preset('lsp-only')
---     lsp_zero.skip_server_setup({ "jdtls" })
---     lsp_zero.nvim_workspace({
---         library = vim.api.nvim_get_runtime_file('', true)
---     })
---     --[[ local lua_opts = lsp_zero.defaults.nvim_workspace()
---     lua_opts.settings.Lua.completion = { callSnippet = 'Replace' }
---     lua_opts.settings.Lua.library = vim.api.nvim_get_runtime_file('', true)
---     lsp_zero.configure('sumneko_lua', lua_opts) ]]
---     local capabilities = require('cmp_nvim_lsp').default_capabilities()
---     capabilities.textDocument.completion.completionItem.snippetSupport = true
---     capabilities.textDocument.completion.completionItem.resolveSupport = {
---         properties = { "documentation", "detail", "additionalTextEdits" }
---     }
---
---     lsp_zero.set_preferences({
---         capabilities = capabilities,
---         set_lsp_keymaps = false,
---     })
---     lsp_zero.on_attach(on_attach)
---     lsp_zero.setup()
--- end
 
 return M

@@ -98,4 +98,9 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
+vim.keymap.set('n', 'C-h', "<cmd> TmuxNavigateLeft<CR>", {desc = "Window left"})
+vim.keymap.set('n', 'C-l', "<cmd> TmuxNavigateRight<CR>", {desc = "Window right"})
+vim.keymap.set('n', 'C-j', "<cmd> TmuxNavigateDown<CR>", {desc = "Window down"})
+vim.keymap.set('n', 'C-k', "<cmd> TmuxNavigateUp<CR>", {desc = "Window up"})
+
 -- vim: ts=2 sts=2 sw=2 et
