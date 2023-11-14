@@ -11,6 +11,15 @@ autocmd("Filetype", {
   end
 })
 
+vim.filetype.add({
+  filename = {
+    ['Config'] = function()
+      vim.b.brazil_package_Config = 1
+      return 'brazilconfig'
+    end,
+  },
+})
+
 -- local metals_config = require("metals").bare_config()
 --
 -- -- Example of settings
