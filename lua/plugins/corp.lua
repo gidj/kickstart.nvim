@@ -9,7 +9,7 @@ return {
   {
     url = "gideonva@git.amazon.com:pkg/NinjaHooks",
     branch = "mainline",
-    lazy = not WORKING,
+    lazy = false,
     config = function(plugin)
       vim.opt.rtp:prepend(plugin.dir .. "/configuration/vim/amazon/brazil-config")
       -- Make my own filetype thing to override neovim applying ".conf" file type.
@@ -19,7 +19,7 @@ return {
   {
     url = "gideonva@git.amazon.com:pkg/Scat-nvim",
     branch = "mainline",
-    lazy = not WORKING,
+    lazy = false,
     config = function()
       local map_key = vim.keymap.set
       local brazil = require("scat.brazil")
