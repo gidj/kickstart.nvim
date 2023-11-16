@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('v', "<leader>ca", "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
         { noremap = true, silent = true, buffer = bufnr, desc = "Code actions" })
 
-    nnoremap('<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts, "Format file")
+    -- nnoremap('<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts, "Format file")
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })

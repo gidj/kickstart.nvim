@@ -29,13 +29,13 @@ return {
       }
     end,
   },
-  {
-    'echasnovski/mini.files',
-    version = false,
-    config = function ()
-      require("mini.files").setup()
-    end
-  },
+  -- {
+  --   'echasnovski/mini.files',
+  --   version = false,
+  --   config = function ()
+  --     require("mini.files").setup()
+  --   end
+  -- },
   'justinmk/vim-dirvish',
   'ipkiss42/xwiki.vim',
   {
