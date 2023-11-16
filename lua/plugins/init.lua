@@ -29,6 +29,18 @@ return {
       }
     end,
   },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function ()
+      require('conform').setup({
+        formatters_by_ft = {
+          python = {"black"},
+          json = {"prettier"},
+        }
+      })
+    end
+  },
   -- {
   --   'echasnovski/mini.files',
   --   version = false,
@@ -147,15 +159,22 @@ return {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    'echasnovski/mini.surround',
+    version = false,
     config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
+      require("mini.surround").setup()
     end
   },
+  -- {
+  --   "kylechui/nvim-surround",
+  --   version = "*", -- Use for stability; omit to use `main` branch for the latest features
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("nvim-surround").setup({
+  --       -- Configuration here, or leave empty to use defaults
+  --     })
+  --   end
+  -- },
   {
     'kevinhwang91/nvim-bqf',
   },
