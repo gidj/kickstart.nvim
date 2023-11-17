@@ -1,16 +1,16 @@
 local get_amazon_type_url = function(url_data)
-  local url = "https://"
-      .. url_data.host:gsub("git", "code")
-      .. "/"
-      .. url_data.repo:gsub("pkg", "packages")
-      .. "/blobs/"
-      .. url_data.rev
-      .. "/--/"
-      .. url_data.file
+  local url = 'https://'
+    .. url_data.host:gsub('git', 'code')
+    .. '/'
+    .. url_data.repo:gsub('pkg', 'packages')
+    .. '/blobs/'
+    .. url_data.rev
+    .. '/--/'
+    .. url_data.file
   if url_data.lstart then
-    url = url .. "#L" .. url_data.lstart
+    url = url .. '#L' .. url_data.lstart
     if url_data.lend then
-      url = url .. "-L" .. url_data.lend
+      url = url .. '-L' .. url_data.lend
     end
   end
   return url
@@ -25,21 +25,9 @@ return {
       require('guess-indent').setup {
         filetype_exclude = {
           'java',
-        }
+        },
       }
     end,
-  },
-  {
-    'stevearc/conform.nvim',
-    opts = {},
-    config = function ()
-      require('conform').setup({
-        formatters_by_ft = {
-          python = {"black"},
-          json = {"prettier"},
-        }
-      })
-    end
   },
   -- {
   --   'echasnovski/mini.files',
@@ -52,7 +40,7 @@ return {
   'ipkiss42/xwiki.vim',
   {
     'christoomey/vim-tmux-navigator',
-    lazy = false
+    lazy = false,
   },
   -- {
   --   "nvim-neo-tree/neo-tree.nvim",
@@ -75,30 +63,22 @@ return {
   { 'mfussenegger/nvim-dap' },
   { 'rcarriga/nvim-dap-ui' },
   {
-    "windwp/nvim-autopairs",
-    opts = {}
+    'windwp/nvim-autopairs',
+    opts = {},
   },
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
-      -- See `:help gitsigns.txt`
-      -- signs = {
-      --   add = { text = '+' },
-      --   change = { text = '~' },
-      --   delete = { text = '_' },
-      --   topdelete = { text = '‾' },
-      --   changedelete = { text = '~' },
-      -- },
       signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
       },
     },
   },
@@ -107,7 +87,7 @@ return {
     'folke/tokyonight.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight-storm'
     end,
   },
   {
@@ -129,7 +109,7 @@ return {
         lualine_c = { 'filename' },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
-        lualine_z = { 'location' }
+        lualine_z = { 'location' },
       },
       inactive_sections = {
         lualine_a = {},
@@ -137,10 +117,10 @@ return {
         lualine_c = { 'filename' },
         lualine_x = { 'location' },
         lualine_y = {},
-        lualine_z = {}
+        lualine_z = {},
       },
       tabline = {},
-      extensions = {}
+      extensions = {},
     },
     dependencies = {
       'nvim-tree/nvim-web-devicons',
@@ -162,8 +142,8 @@ return {
     'echasnovski/mini.surround',
     version = false,
     config = function()
-      require("mini.surround").setup()
-    end
+      require('mini.surround').setup()
+    end,
   },
   -- {
   --   "kylechui/nvim-surround",
@@ -256,10 +236,10 @@ return {
     config = function()
       require('gitlinker').setup {
         callbacks = {
-          ["git.amazon.com"] = get_amazon_type_url
-        }
+          ['git.amazon.com'] = get_amazon_type_url,
+        },
       }
-    end
+    end,
   },
   -- {
   --   "nvim-neotest/neotest",
@@ -278,22 +258,22 @@ return {
   --   end
   -- },
   {
-    "sindrets/diffview.nvim"
+    'sindrets/diffview.nvim',
   },
   {
-    "epwalsh/obsidian.nvim",
-    event = { "BufReadPre /Users/gideonva/obsidian/Amazon/**.md" },
+    'epwalsh/obsidian.nvim',
+    event = { 'BufReadPre /Users/gideonva/obsidian/Amazon/**.md' },
     -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
     -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
     dependencies = {
       -- Required.
-      "nvim-lua/plenary.nvim",
+      'nvim-lua/plenary.nvim',
 
       -- Optional, for completion.
-      "hrsh7th/nvim-cmp",
+      'hrsh7th/nvim-cmp',
 
       -- Optional, for search and quick-switch functionality.
-      "nvim-telescope/telescope.nvim",
+      'nvim-telescope/telescope.nvim',
 
       -- Optional, an alternative to telescope for search and quick-switch functionality.
       -- "ibhagwan/fzf-lua"
@@ -307,7 +287,7 @@ return {
       -- "preservim/vim-markdown",
     },
     opts = {
-      dir = "~/obsidian/Amazon/", -- no need to call 'vim.fn.expand' here
+      dir = '~/obsidian/Amazon/', -- no need to call 'vim.fn.expand' here
 
       -- -- Optional, if you keep notes in a specific subdirectory of your vault.
       -- notes_subdir = "notes",
@@ -318,7 +298,7 @@ return {
 
       daily_notes = {
         -- Optional, if you keep daily notes in a separate directory.
-        folder = "__DAILY",
+        folder = '__DAILY',
         -- -- Optional, if you want to change the date format for daily notes.
         -- date_format = "%Y-%m-%d"
       },
@@ -398,34 +378,20 @@ return {
       -- finder you can attempt it first. Note that if the specified finder
       -- is not installed, or if it the command does not support it, the
       -- remaining finders will be attempted in the original order.
-      finder = "telescope.nvim",
+      finder = 'telescope.nvim',
     },
     config = function(_, opts)
-      require("obsidian").setup(opts)
+      require('obsidian').setup(opts)
 
       -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
       -- see also: 'follow_url_func' config option above.
-      vim.keymap.set("n", "gf", function()
-        if require("obsidian").util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
+      vim.keymap.set('n', 'gf', function()
+        if require('obsidian').util.cursor_on_markdown_link() then
+          return '<cmd>ObsidianFollowLink<CR>'
         else
-          return "gf"
+          return 'gf'
         end
       end, { noremap = false, expr = true })
     end,
-  }
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  --
-  --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
-  --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
+  },
 }
