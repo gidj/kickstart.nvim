@@ -29,6 +29,7 @@ return {
       }
     end,
   },
+  { 'RRethy/vim-illuminate' },
   -- {
   --   'echasnovski/mini.files',
   --   version = false,
@@ -139,9 +140,10 @@ return {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   {
-    'echasnovski/mini.surround',
+    'echasnovski/mini.nvim',
     version = false,
     config = function()
+      require('mini.indentscope').setup()
       require('mini.surround').setup()
     end,
   },
