@@ -99,7 +99,9 @@ return {
       lsp_zero.on_attach(config_lsp.on_attach)
       lsp_zero.setup()
       -- Setup neovim lua configuration
-      require('neodev').setup()
+      require('neodev').setup({
+        library = { plugins = { "neotest" }, types = true }
+      })
     end
   }
 }
