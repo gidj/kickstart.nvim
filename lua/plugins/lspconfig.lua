@@ -50,7 +50,6 @@ return {
       {
         'j-hui/fidget.nvim',
         opts = {},
-        branch = "legacy"
       },
 
       -- Additional lua configuration, makes nvim stuff amazing!
