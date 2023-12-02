@@ -58,7 +58,7 @@ local on_attach = function(client, bufnr)
   nnoremap('[d', vim.diagnostic.goto_prev, bufopts)
   -- Move to the next diagnostic
   nnoremap(']d', vim.diagnostic.goto_next, bufopts)
-  vim.lsp.inlay_hint.enable(bufnr, true)
+  -- vim.lsp.inlay_hint.enable(bufnr, true)
 end
 
 M.on_attach = on_attach
@@ -95,7 +95,7 @@ M.on_attach_java = function(client, bufnr)
     hotcodereplace = 'auto',
   }
 
-  vim.lsp.inlay_hint.enable(bufnr, true)
+  -- vim.lsp.inlay_hint.enable(bufnr, true)
   -- vim.lsp.buf.inlay_hint(bufnr, true)
   -- jdtls.dap.setup_dap_main_class_configs()
   -- jdtls_setup.add_commands()
