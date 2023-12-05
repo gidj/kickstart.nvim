@@ -47,14 +47,7 @@ return {
       vim.keymap.set('n', 'gR', function() require('trouble').toggle 'lsp_references' end)
     end,
   },
-  -- {
-  --   'echasnovski/mini.files',
-  --   version = false,
-  --   config = function ()
-  --     require("mini.files").setup()
-  --   end
-  -- },
-  'justinmk/vim-dirvish',
+  -- 'justinmk/vim-dirvish',
   'ipkiss42/xwiki.vim',
   {
     'christoomey/vim-tmux-navigator',
@@ -162,6 +155,7 @@ return {
     config = function()
       require('mini.indentscope').setup()
       require('mini.surround').setup()
+      require('mini.files').setup()
     end,
   },
   -- {
