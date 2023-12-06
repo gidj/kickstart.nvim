@@ -9,6 +9,13 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local minifiles_open = function()
+  require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+end
+
+-- Mini Files
+vim.keymap.set('n', '-', minifiles_open, { silent = true })
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
