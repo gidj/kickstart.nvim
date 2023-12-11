@@ -9,6 +9,7 @@ local java_test_path = mason_registry.get_package('java-test'):get_install_path(
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
 local root_markers = { 'gradlew', 'build.gradle', 'mvnw', '.git' }
+-- local root_markers = { "packageInfo" }
 local root_dir = require('jdtls.setup').find_root(root_markers)
 
 -- eclipse.jdt.ls stores project specific data within a folder. If you are working

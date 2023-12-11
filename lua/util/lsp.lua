@@ -28,7 +28,7 @@ function M.java_workspaces()
     for _, dir in ipairs(dirs) do
         table.insert(workspaces, "file://" .. dir)
     end
-    -- print(workspaces)
+
     return workspaces
 end
 
