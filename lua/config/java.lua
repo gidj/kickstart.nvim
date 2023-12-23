@@ -49,12 +49,8 @@ local config = {
   flags = {
     debounce_text_changes = 80,
   },
-  on_attach = lsp_config.on_attach_java, -- We pass our on_attach keybindings to the configuration map
-  root_dir = root_dir, -- Set the root directory to our found root_marker
-  -- Here you can configure eclipse.jdt.ls specific settings
-  -- These are defined by the eclipse.jdt.ls project and will be passed to eclipse when starting.
-  -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-  -- for a list of options
+  on_attach = lsp_config.on_attach_java, -- This is just another module of mine, not `lspconfig`
+  root_dir = root_dir, -- Essentially this: https://w.amazon.com/bin/view/Bemol/#HnvimbuiltinLSP
   settings = {
     java = {
       inlayhints = {
@@ -62,18 +58,12 @@ local config = {
           enabled = true,
         },
       },
-      format = {
-        settings = {
-          -- Use Google Java style guidelines for formatting
-          -- To use, make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
-          -- and place it in the ~/.local/share/eclipse directory
-          -- url = home .. "/Desktop/Team_eclipse.xml",
-          -- profile = "Team",
-        },
-      },
+      -- format = {
+      --   settings = {
+      --   },
+      -- },
       signatureHelp = { enabled = true },
-      -- contentProvider = { preferred = 'fernflower' },  -- Use fernflower to decompile library code
-      -- Specify any completion options
+      contentProvider = { preferred = 'fernflower' },  -- Use fernflower to decompile library code
       completion = {
         favoriteStaticMembers = {
           'org.hamcrest.MatcherAssert.assertThat',
@@ -104,16 +94,8 @@ local config = {
         toString = {
           template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
         },
-        --[[ hashCodeEquals = {
-          useJava7Objects = true,
-        }, ]]
         useBlocks = true,
       },
-      -- If you are developing in projects with different Java versions, you need
-      -- to tell eclipse.jdt.ls to use the location of the JDK for your Java version
-      -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-      -- And search for `interface RuntimeOption`
-      -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
       configuration = {
         runtimes = {
           {
@@ -121,11 +103,6 @@ local config = {
             path = home .. '/.local/share/rtx/installs/java/corretto-8.392.08.1',
             default = true,
           },
-          -- {
-          --     name = "JavaSE-1.8",
-          --     path = "/Volumes/workplace/AssetPersonalizationService/env/JDK8-1.0/runtime/jdk1.8",
-          --     default = true
-          -- },
           {
             name = 'JavaSE-17',
             path = home .. '/.local/share/rtx/installs/java/openjdk-17',
@@ -138,14 +115,8 @@ local config = {
       },
     },
   },
-  -- cmd is the command that starts the language server. Whatever is placed
-  -- here is what is passed to the command line to execute jdtls.
-  -- Note that eclipse.jdt.ls must be started with a Java version of 17 or higher
-  -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-  -- for the full list of options
   cmd = {
     home .. '/.local/share/rtx/installs/java/openjdk-19/bin/java',
-    -- "java",
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
