@@ -40,16 +40,29 @@ end
 
 return {
   {
+    'j-hui/fidget.nvim',
+    opts = {
+      progress = {
+        suppress_on_insert = true,
+      },
+      notification = {
+        view = {
+          stack_upwards = false
+        },
+        window = {
+          -- align = "avoid_cursor"
+          align = "top"
+        }
+      }
+    },
+  },
+  {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     dependencies = {
       'neovim/nvim-lspconfig',
       { 'williamboman/mason.nvim', build = ':MasonUpdate' },
       'williamboman/mason-lspconfig.nvim',
-      {
-        'j-hui/fidget.nvim',
-        opts = {},
-      },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
