@@ -132,4 +132,34 @@ vim.keymap.set('n', "<leader>ds", function() require("dap").session() end, {desc
 vim.keymap.set('n', "<leader>dt", function() require("dap").terminate() end, {desc = "Terminate"})
 vim.keymap.set('n', "<leader>dw", function() require("dap.ui.widgets").hover() end, {desc = "Widgets"})
 
+-- local project_files = function()
+--   -- call via:
+--   -- :lua require"telescope-config".project_files()
+--
+--   -- example keymap:
+--   -- vim.api.nvim_set_keymap("n", "<Leader><Space>", "<CMD>lua require'telescope-config'.project_files()<CR>", {noremap = true, silent = true})
+--
+--   local opts = {} -- define here if you want to define something
+--   vim.fn.system('git rev-parse --is-inside-work-tree')
+--   -- if vim.v.shell_error == 0 then
+--     local plenary = require("plenary")
+--     local scandir = require("plenary.scandir")
+--     -- check if in Brazil Project and if so find from root
+--     local root_markers = { "packageInfo" }
+--     local root_dir = require('jdtls.setup').find_root(root_markers)
+--     if root_dir ~= nil then
+--       local project_dirs = scandir.scan_dir(root_dir .. "/src", {only_dirs=true, respect_gitignore=true })
+--       -- local project_dirs = {"/Users/gideonva/workplace/AssetPersonalizationService/src/ATVAssetPersonalization-Ranking", "/Users/gideonva/workplace/AssetPersonalizationService/src/ATVAssetPersonalization-Data"}
+--       -- opts["cwd"] = root_dir
+--       opts["search_dirs"] = project_dirs
+--       -- opts["no_ignore"] = root_dir
+--       require "telescope.builtin".find_files(opts)
+--   --   else
+--   --     require "telescope.builtin".git_files(opts)
+--   --   end
+--   --   require "telescope.builtin".git_files(opts)
+--   -- else
+--   --   require "telescope.builtin".find_files(opts)
+--   end
+-- end
 -- vim: ts=2 sts=2 sw=2 et

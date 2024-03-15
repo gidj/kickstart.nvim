@@ -100,23 +100,23 @@ local config = {
         runtimes = {
           {
             name = 'JavaSE-1.8',
-            path = home .. '/.local/share/rtx/installs/java/corretto-8.392.08.1',
+            path = home .. '/.local/share/mise/installs/java/corretto-8.392.08.1',
             default = true,
           },
           {
             name = 'JavaSE-17',
-            path = home .. '/.local/share/rtx/installs/java/openjdk-17',
+            path = home .. '/.local/share/mise/installs/java/openjdk-17',
           },
           {
             name = 'JavaSE-19',
-            path = home .. '/.local/share/rtx/installs/java/openjdk-19',
+            path = home .. '/.local/share/mise/installs/java/openjdk-19',
           },
         },
       },
     },
   },
   cmd = {
-    home .. '/.local/share/rtx/installs/java/openjdk-19/bin/java',
+    home .. '/.local/share/mise/installs/java/openjdk-19/bin/java',
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -131,7 +131,7 @@ local config = {
     -- If you use lombok, download the lombok jar and place it in ~/.local/share/eclipse
     '-javaagent:'
       .. home
-      .. '/.local/share/eclipse/lombok.jar',
+      .. '/.local/share/eclipse/lombok-edge.jar',
 
     -- The jar file is located where jdtls was installed. This will need to be updated
     -- to the location where you installed jdtls

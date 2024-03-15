@@ -21,9 +21,9 @@ local on_attach = function(client, bufnr)
 
   nnoremap('<leader>ca', vim.lsp.buf.code_action, bufopts, 'Code Actions')
   vim.keymap.set(
-    'v',
+	{'n', 'v'},
     '<leader>ca',
-    '<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>',
+    vim.lsp.buf.code_action,
     { noremap = true, silent = true, buffer = bufnr, desc = 'Code actions' }
   )
 

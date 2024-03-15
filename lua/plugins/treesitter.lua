@@ -23,6 +23,7 @@ return {
         "ruby",
         "rust",
         "typescript",
+        "vimdoc",
         "yaml",
       },
 

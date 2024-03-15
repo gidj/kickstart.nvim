@@ -19,16 +19,16 @@ end
 return {
   -- Detect tabstop and shiftwidth automatically
   -- 'tpope/vim-sleuth',
-  {
-    'nmac427/guess-indent.nvim',
-    config = function()
-      require('guess-indent').setup {
-        filetype_exclude = {
-          'java',
-        },
-      }
-    end,
-  },
+  -- {
+  --   'nmac427/guess-indent.nvim',
+  --   config = function()
+  --     require('guess-indent').setup {
+  --       filetype_exclude = {
+  --         'java',
+  --       },
+  --     }
+  --   end,
+  -- },
   { 'RRethy/vim-illuminate' },
   {
     'folke/trouble.nvim',
