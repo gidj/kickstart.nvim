@@ -15,6 +15,7 @@ return {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-path',
     'onsails/lspkind-nvim', -- Enables icons on completions
+    'crispgm/cmp-beancount',
 
     -- Snippets
     {
@@ -113,6 +114,12 @@ return {
           }
         },
         { name = 'path' },
+        -- {
+        --   name = "beancount",
+        --   option = {
+        --     account = "/Users/gideon/projects/finances/account.beancount"
+        --   }
+        -- }
       },
       view = { entries = { name = "custom", selection_order = "near_cursor" } },
       -- window = {
