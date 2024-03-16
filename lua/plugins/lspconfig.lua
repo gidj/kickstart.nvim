@@ -47,13 +47,13 @@ return {
       },
       notification = {
         view = {
-          stack_upwards = false
+          stack_upwards = false,
         },
         window = {
           -- align = "avoid_cursor"
-          align = "top"
-        }
-      }
+          align = 'top',
+        },
+      },
     },
   },
   {
@@ -96,6 +96,23 @@ return {
               },
             }
             require('lspconfig').lua_ls.setup(lua_opts)
+          end,
+          rust_analyzer = function()
+            require('lspconfig').rust_analyzer.setup {
+              settings = {
+                ['rust-analyzer'] = {
+                  check = {
+                    command = 'clippy',
+                  },
+                  diagnostics = {
+                    enable = true,
+                  },
+                  cargo = {
+                    allFeatures = true
+                  },
+                },
+              },
+            }
           end,
           -- beancount = function()
           --   require('lspconfig').beancount.setup {
