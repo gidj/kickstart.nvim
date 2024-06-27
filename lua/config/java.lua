@@ -53,6 +53,7 @@ local config = {
   root_dir = root_dir, -- Essentially this: https://w.amazon.com/bin/view/Bemol/#HnvimbuiltinLSP
   settings = {
     java = {
+      signatureHelp = { enabled = true },
       inlayhints = {
         parameterNames = {
           enabled = true,
@@ -62,7 +63,6 @@ local config = {
       --   settings = {
       --   },
       -- },
-      signatureHelp = { enabled = true },
       contentProvider = { preferred = 'fernflower' },  -- Use fernflower to decompile library code
       completion = {
         favoriteStaticMembers = {

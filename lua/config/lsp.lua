@@ -1,9 +1,14 @@
 local M = {}
 
+local vmArgs =  '-ea -javaagent:/Volumes/brazil-pkg-cache/packages/Maven-org-aspectj_aspectjweaver/Maven-org-aspectj_aspectjweaver-1.9.x.5186.0/AL2_x86_64/DEV.STD.PTHREAD/build/lib/aspectjweaver-1.9.6.jar'
+
 -- Helper function for creating keymaps
 local function nnoremap(rhs, lhs, bufopts, desc)
   bufopts.desc = desc
   vim.keymap.set('n', rhs, lhs, bufopts)
+end
+
+local function keymaps() 
 end
 
 local on_attach = function(client, bufnr)
@@ -59,6 +64,7 @@ local on_attach = function(client, bufnr)
   -- Move to the next diagnostic
   nnoremap(']d', vim.diagnostic.goto_next, bufopts)
   -- vim.lsp.inlay_hint.enable(bufnr, true)
+  vim.lsp.inlay_hint.enable(true)
 end
 
 M.on_attach = on_attach
@@ -90,7 +96,7 @@ M.on_attach_java = function(client, bufnr)
 
   jdtls.setup_dap {
     config_overrides = {
-      vmArgs = '-ea -javaagent:/Volumes/brazil-pkg-cache/packages/Maven-org-aspectj_aspectjweaver/Maven-org-aspectj_aspectjweaver-1.9.x.3275.0/AL2_x86_64/DEV.STD.PTHREAD/build/lib/aspectjweaver-1.9.6.jar',
+      vmArgs = vmArgs,
     },
     hotcodereplace = 'auto',
   }
